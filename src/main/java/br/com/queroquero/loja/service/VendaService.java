@@ -24,11 +24,11 @@ public class VendaService {
 	
 	/**
      * Cria uma venda e seus itens, se o vendedor informado na venda existir. Os dados do vendedor não são atualizados.
-     * Se o vendedor não existir, a venda não é criada.
+     * Se o vendedor não existir, a venda não é criada e lança exceção.
      * 
      * @param venda A venda a ser criada.
-     * @return A venda criada. Retorna <code>null</code> se não for possível criar a venda.
-     * @throws VendedorInexistenteException
+     * @return A venda criada. Retorna <code>null</code> se ocorrer algum erro e não for possível criar a venda.
+     * @throws VendedorInexistenteException se o vendedor informado na venda não existir.
      */
 	@Transactional
     public Venda criarVenda(Venda venda) throws VendedorInexistenteException {
