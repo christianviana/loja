@@ -88,10 +88,10 @@ https://quarkus.io/guides/deploying-to-kubernetes
 https://quarkus.io/guides/cdi-reference#container-managed-concurrency
 https://stackoverflow.com/questions/60071059/how-is-it-safe-to-inject-entitymanager-in-applicationscoped-bean-in-quarkus
 
-
+- k8s
 - criar os serviços separadamente, dividindo por área de negócio?
 ou um único?
-- para os endpoints de estatírtica poderem receber carga maior, qual a melhor solução?
+- para os endpoints de estatística poderem receber carga maior, qual a melhor solução?
 - jar com parte de negócio pra baixo, pra poder reutilizar modelo, serviço, dao, etc tanto no crud quanto nas estatísticas
 - microserviços separados com endpoints de estatística
 - usar caching do banco
