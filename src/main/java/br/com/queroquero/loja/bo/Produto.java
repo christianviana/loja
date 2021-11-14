@@ -12,9 +12,9 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Classe que representa um produto que pode ser vendido
+ * Classe que representa um produto que pode ser vendido. Dois produtos são considerados iguais quando ambos possuem o
+ * mesmo código.
  * 
- * Dois produtos são considerados iguais quando ambos possuem o mesmo código.
  */
 @Entity
 @NamedQuery(name = Produto.NOME_HQL_PRODUTOS_MAIS_VENDIDOS, query = Produto.HQL_PRODUTOS_MAIS_VENDIDOS)

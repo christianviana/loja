@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Classe que representa um vendedor da loja
+ * Classe que representa um vendedor da loja.
  * 
  */
 @Entity
