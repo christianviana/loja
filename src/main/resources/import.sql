@@ -31,3 +31,56 @@ INSERT INTO
 public.produto (id, codigo, nome, preco) 
 VALUES(nextval('produto_id_seq'), '44', 'produto4', '1.46');
 
+
+
+-- vendas
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '100.01', 1);
+
+
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '11.21', 2);
+
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '111.21', 2);
+
+
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '110.21', 3);
+
+
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '34.21', 3);
+
+
+INSERT INTO
+public.venda (numvenda, valortotal, vendedor_id) 
+VALUES(nextval('venda_id_seq'), '4.31', 3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

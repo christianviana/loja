@@ -1,5 +1,7 @@
 package br.com.queroquero.loja.api;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +13,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import br.com.queroquero.loja.bo.Vendedor;
+import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
+import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
+import br.com.queroquero.loja.service.VendaService;
 import br.com.queroquero.loja.service.VendedorService;
+import io.quarkus.logging.Log;
 
 @Path("vendedores")
 public class VendedorResource {
@@ -19,6 +25,8 @@ public class VendedorResource {
 	@Inject
     VendedorService vendedorService;
 	
+    @Inject
+    VendaService vendaService;
 	
     @GET
     @Path("/{matricula}")
@@ -60,7 +68,33 @@ public class VendedorResource {
 		}
 	}
 
+    @GET
+    @Path("/maiores-por-valor")
+    public Response buscarMaioresVendedoresPorValorVendas() {
+        try {
+            List<VendedorPorValorVendasDTO> vendedores = vendedorService.buscarMaioresVendedoresPorValorVendas();
+            return Response.ok(vendedores).build();
+        } catch (Exception e) {
+            Erro erro = new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_VALOR);
+            Log.error(erro.getMsgUsuario(), e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_VALOR)).build();
+        }
+    }
     
+    @GET
+    @Path("/maiores-por-numero-vendas")
+    public Response buscarMaioresVendedoresPorNumVendas() {
+        try {
+            List<VendedorPorNumVendasDTO> vendedores = vendedorService.buscarMaioresVendedoresPorNumVendas();
+            return Response.ok(vendedores).build();
+        } catch (Exception e) {
+            Erro erro = new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_NUM_VENDAS);
+            Log.error(erro.getMsgUsuario(), e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR)
+                    .entity(erro).build();
+        }
+    }
     
     
 }

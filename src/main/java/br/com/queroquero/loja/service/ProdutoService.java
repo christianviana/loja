@@ -1,5 +1,7 @@
 package br.com.queroquero.loja.service;
 
+import java.util.List;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
@@ -7,6 +9,7 @@ import org.jboss.logging.Logger;
 
 import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dao.ProdutoDAO;
+import br.com.queroquero.loja.dto.ProdutoPorQtdDTO;
 
 @Dependent
 public class ProdutoService {
@@ -48,5 +51,9 @@ public class ProdutoService {
 		return false;
 	}
 	
+    // list de produtos mais vendidos
+    public List<ProdutoPorQtdDTO> buscarProdutosMaisVendidos() {
+        return produtoDAO.buscarProdutosMaisVendidos();
+    }
     
 }

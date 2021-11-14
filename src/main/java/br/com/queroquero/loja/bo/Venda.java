@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -20,14 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Classe que representa uma venda realizada
  */
 @Entity
-@NamedQuery(name = Venda.HQL_PRODUTOS_MAIS_VENDIDOS, query = "")
-@NamedQuery(name = Venda.HQL_VENDEDORES_MAIS_VENDAS, query = "")
-@NamedQuery(name = Venda.HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR, query = "")
 public class Venda {
-    
-    public static final String HQL_PRODUTOS_MAIS_VENDIDOS = "buscarProdutosMaisVendidos";
-    public static final String HQL_VENDEDORES_MAIS_VENDAS = "buscarVendedoresMaisVendas";
-    public static final String HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = "buscarVendedoresMaioresVendasValor";
     
 	@Id
 	@SequenceGenerator(name = "vendaSeq", sequenceName = "venda_id_seq", allocationSize = 1, initialValue = 1)
@@ -52,7 +44,14 @@ public class Venda {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Item> itens = new ArrayList<>();
 
-
+    public Venda() {
+        
+    }
+    
+    public Venda(Vendedor vendedor, BigDecimal valorTotal) {
+        this.vendedor = vendedor;
+        this.valorTotal = valorTotal;
+    }
 
 	public Long getNumVenda() {
 		return numVenda;

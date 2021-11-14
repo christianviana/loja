@@ -1,5 +1,7 @@
 package br.com.queroquero.loja.service;
 
+import java.util.List;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
@@ -7,6 +9,8 @@ import org.jboss.logging.Logger;
 
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dao.VendedorDAO;
+import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
+import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
 
 @Dependent
 public class VendedorService {
@@ -61,6 +65,15 @@ public class VendedorService {
 
 	}
 
+    // list de vendedores com maior número de vendas
+    public List<VendedorPorNumVendasDTO> buscarMaioresVendedoresPorNumVendas() {
+        return vendedorDAO.buscarMaioresVendedoresPorNumVendas();
+    }
+    
+    // list de vendedores por valor vendido
+    public List<VendedorPorValorVendasDTO> buscarMaioresVendedoresPorValorVendas() {
+        return vendedorDAO.buscarMaioresVendedoresPorValorVendas();
+    }
 	
 	
 }

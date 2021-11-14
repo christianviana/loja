@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,8 +14,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  */
 @Entity
+@NamedQuery(name = Vendedor.NOME_HQL_VENDEDORES_MAIS_VENDAS, query = Vendedor.HQL_VENDEDORES_MAIS_VENDAS)
+@NamedQuery(name = Vendedor.NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR, query = Vendedor.HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR)
 public class Vendedor {
 
+    public static final String NOME_HQL_VENDEDORES_MAIS_VENDAS = "buscarVendedoresMaisVendas";
+    public static final String HQL_VENDEDORES_MAIS_VENDAS = "select new br.com.queroquero.loja.dto.VendedorPorNumVendasDTO(vendedor, count(venda.id)) "
+            + "from Venda venda join venda.vendedor vendedor group by vendedor.id order by count(venda.id) desc";
+    
+    public static final String NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = "buscarVendedoresMaioresVendasValor";
+    public static final String HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = "select new br.com.queroquero.loja.dto.VendedorPorValorVendasDTO(vendedor, sum(venda.valorTotal)) "
+            + "from Venda venda join venda.vendedor vendedor group by vendedor.id order by sum(venda.valorTotal) desc";
+    
 	@Id
     @SequenceGenerator(name = "vendedorSeq", sequenceName = "vendedor_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "vendedorSeq")

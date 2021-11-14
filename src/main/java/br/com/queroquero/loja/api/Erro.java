@@ -11,10 +11,6 @@ public class Erro {
 	private int codigo;
 	private String msgUsuario;
 
-	public Erro() {
-
-	}
-
 	public Erro(ErroEnum tipoErro) {
 		this.codigo = tipoErro.getCodigo();
 		this.msgUsuario = tipoErro.getMensagem();

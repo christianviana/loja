@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,8 +17,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Dois produtos são considerados iguais quando ambos possuem o mesmo código.
  */
 @Entity
+@NamedQuery(name = Produto.NOME_HQL_PRODUTOS_MAIS_VENDIDOS, query = Produto.HQL_PRODUTOS_MAIS_VENDIDOS)
+
 public class Produto {
     
+    public static final String NOME_HQL_PRODUTOS_MAIS_VENDIDOS = "buscarProdutosMaisVendidos";
+    public static final String HQL_PRODUTOS_MAIS_VENDIDOS = "from Produto p";
+
 	@Id
     @SequenceGenerator(name = "produtoSeq", sequenceName = "produto_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "produtoSeq")

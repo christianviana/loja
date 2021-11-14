@@ -1,5 +1,7 @@
 package br.com.queroquero.loja.dao;
 
+import java.util.List;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -8,6 +10,8 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import br.com.queroquero.loja.bo.Vendedor;
+import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
+import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
 
 @Dependent
 public class VendedorDAO {
@@ -55,5 +59,15 @@ public class VendedorDAO {
 
 	}
 	
+    // list de vendedores com maior número de vendas
+    public List<VendedorPorNumVendasDTO> buscarMaioresVendedoresPorNumVendas() {
+        return em.createNamedQuery(Vendedor.NOME_HQL_VENDEDORES_MAIS_VENDAS, VendedorPorNumVendasDTO.class).getResultList();
+    }
+    
+    // list de vendedores por valor vendido
+    public List<VendedorPorValorVendasDTO> buscarMaioresVendedoresPorValorVendas() {
+        return em.createNamedQuery(Vendedor.NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR, VendedorPorValorVendasDTO.class)
+                .getResultList();
+    }
 	
 }
