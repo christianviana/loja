@@ -11,16 +11,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.jboss.logging.Logger;
+
 import br.com.queroquero.loja.api.erros.Erro;
 import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dto.ProdutoPorQtdDTO;
 import br.com.queroquero.loja.service.ProdutoService;
-import io.quarkus.logging.Log;
 
 @Path("produtos")
 public class ProdutoResource {
-
+    
+    private static final Logger LOG = Logger.getLogger(ProdutoResource.class);
 		
 	@Inject
     ProdutoService produtoService;
@@ -61,7 +63,7 @@ public class ProdutoResource {
             return Response.ok(produtos).build();
         } catch (Exception e) {
             Erro erro = new Erro(ErroEnum.ERRO_BUSCA_PRODUTOS_MAIS_VENDIDOS);
-            Log.error(erro.getMsgUsuario(), e);
+            LOG.error(erro.getMsgUsuario(), e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(erro).build();
         }
     }

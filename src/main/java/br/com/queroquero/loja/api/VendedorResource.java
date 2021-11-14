@@ -12,6 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.jboss.logging.Logger;
+
 import br.com.queroquero.loja.api.erros.Erro;
 import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Vendedor;
@@ -19,11 +21,12 @@ import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
 import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
 import br.com.queroquero.loja.service.VendaService;
 import br.com.queroquero.loja.service.VendedorService;
-import io.quarkus.logging.Log;
 
 @Path("vendedores")
 public class VendedorResource {
 
+    private static final Logger LOG = Logger.getLogger(VendedorResource.class);
+    
 	@Inject
     VendedorService vendedorService;
 	
@@ -78,7 +81,7 @@ public class VendedorResource {
             return Response.ok(vendedores).build();
         } catch (Exception e) {
             Erro erro = new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_VALOR);
-            Log.error(erro.getMsgUsuario(), e);
+            LOG.error(erro.getMsgUsuario(), e);
             return Response.status(Status.INTERNAL_SERVER_ERROR)
                     .entity(new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_VALOR)).build();
         }
@@ -92,7 +95,7 @@ public class VendedorResource {
             return Response.ok(vendedores).build();
         } catch (Exception e) {
             Erro erro = new Erro(ErroEnum.ERRO_BUSCA_MAIORES_VENDEDORES_NUM_VENDAS);
-            Log.error(erro.getMsgUsuario(), e);
+            LOG.error(erro.getMsgUsuario(), e);
             return Response.status(Status.INTERNAL_SERVER_ERROR)
                     .entity(erro).build();
         }
