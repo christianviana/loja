@@ -43,32 +43,39 @@ public class Produto {
     private String nome;
     private BigDecimal preco;
 
-	public String getCodigo() {
-    	return this.codigo;
+
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getCodigo() {
+        return codigo;
+    }
+    
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    public String getNome() {
+        return nome;
     }
 
-    
-	public String getNome() {
-    	return this.nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    
-	public BigDecimal getPreco() {
-		return preco;
-	}
+    public BigDecimal getPreco() {
+        return preco;
+    }
 
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
     
  	@Override
 	public int hashCode() {
@@ -99,7 +106,6 @@ public class Produto {
 	public String toString() {
 		return "Produto [codigo=" + codigo + ", nome=" + nome + ", preco=" + preco + "]";
 	}
-
 
     
 }
