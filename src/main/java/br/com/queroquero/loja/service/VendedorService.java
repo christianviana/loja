@@ -1,9 +1,6 @@
 package br.com.queroquero.loja.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
@@ -11,7 +8,7 @@ import org.jboss.logging.Logger;
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dao.VendedorDAO;
 
-@ApplicationScoped
+@Dependent
 public class VendedorService {
 
 	@Inject
@@ -64,15 +61,6 @@ public class VendedorService {
 
 	}
 
-	// list de vendedores com maior número de vendas
-	public List<Vendedor> maioresVendedoresPorNumVendas() {	
-		return new ArrayList<>();		
-	}
-	
-	// list de vendedores por valor vendido
-	public List<Vendedor> maioresVendedoresPorValorVendas() {	
-		return new ArrayList<>();		
-	}
 	
 	
 }

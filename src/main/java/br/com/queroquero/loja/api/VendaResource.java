@@ -1,16 +1,29 @@
 package br.com.queroquero.loja.api;
 
-import javax.ws.rs.GET;
+import javax.inject.Inject;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import br.com.queroquero.loja.bo.Venda;
+import br.com.queroquero.loja.service.VendaService;
 
 @Path("/vendas")
 public class VendaResource {
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy2";
-    }
+	@Inject
+	VendaService vendaService;
+
+	@POST
+	public Response criarVenda(Venda venda) {
+		venda = vendaService.criarVenda(venda);
+		if (venda != null) {
+			return Response.status(Status.CREATED).entity(venda).build();
+		} else {
+			return Response.status(Status.CONFLICT).entity(new Erro(ErroEnum.ERRO_CRIAR_VENDA)).build();
+		}
+
+	}
+
 }

@@ -1,56 +1,71 @@
-# loja Project
+# Projeto Loja Quero-Quero
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este projeto usa o framework Java Quarkus: https://quarkus.io/
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Pré-requisitos
 
-## Running the application in dev mode
+- JDK 11+ instalado com JAVA_HOME configurado
+- Apache Maven 3.8.1+
+- Docker: https://www.docker.com/
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+## Pré-instalação: instalando o banco de dados
 
-## Packaging and running the application
+Para instalar uma imagem docker executando um servidor de banco de dados Postgresql, execute o comando abaixo:
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+FALTA REFERENCIAR A IMAGEM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+PRECISA CADASTRAR ALGUM REPOSITORIO:??????
+MELHOR EU FORNECER A IMAGEM 
+1. Baixar a imagem 
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+2. Executar a imagem
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+> `docker run -p 5432:5432 --name quero-quero-db -e POSTGRES_PASSWORD=segr123! -d postgres`
+ 
+> **Nota**: Para executar o docker sem privilégio de root, siga essas [instruções](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
+ 
+## Instalação (opção 1): via fontes no GitHub
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+1. Clonar o repositório
 
-## Creating a native executable
+2. Executar a aplicação no modo desenvolvimento (dev mode)
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+> `./mvnw compile quarkus:dev`
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+## Instalação (opção 2): via imagem Docker
 
-You can then execute your native executable with: `./target/loja-1.0.0-SNAPSHOT-runner`
+1. Baixar a imagem 
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
+2. Executar a imagem
 
-## Provided Code
 
-### RESTEasy JAX-RS
+## Documentação da API
 
-Easily start your RESTful Web Services
 
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+- Link
+The Quarkus smallrye-openapi extension comes with a swagger-ui extension embedding a properly configured Swagger UI page.
+
+http://localhost:8080/q/swagger-ui/
+
+- Exemplos
+
+pegar alguns exemplos em  http://localhost:8080/q/swagger-ui/
+
+
+
+## Arquitetura para alta carga nos endpoints de estatística
+
+
+https://quarkus.io/guides/deploying-to-kubernetes
+
+- criar os serviços separadamente, dividindo por área de negócio?
+ou um único?
+- para os endpoints de estatírtica poderem receber carga maior, qual a melhor solução?
+- jar com parte de negócio pra baixo, pra poder reutilizar modelo, serviço, dao, etc tanto no crud quanto nas estatísticas
+- microserviços separados com endpoints de estatística
+- usar caching do banco
+- ver opções de caching que fala na parte de hibernate ORM do quarkus
+- https://quarkus.io/guides/hibernate-orm#caching-of-queries
+- escalar verticalmente com beans do tipo applicationScoped - menor footprint de memória de menor tempo de criação de request, pois não precisa criar e injetar o bean
+
+

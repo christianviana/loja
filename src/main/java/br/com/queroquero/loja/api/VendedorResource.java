@@ -27,17 +27,17 @@ public class VendedorResource {
 		if (vendEncontrado == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		} else {
-			return Response.status(Status.CREATED).entity(vendEncontrado).build();
+			return Response.ok(vendEncontrado).build();
 		}
     }
     
     @POST
-    public Response criarVendedor(Vendedor vendedor) {
+	public Response criarVendedor(Vendedor vendedor) {
 		vendedor = vendedorService.criarVendedor(vendedor);
 		if (vendedor != null) {
 			return Response.status(Status.CREATED).entity(vendedor).build();
 		} else {
-			return Response.serverError().build();
+			return Response.status(Status.CONFLICT).entity(new Erro(ErroEnum.ERRO_CRIAR_VENDEDOR)).build();
 		}
 
     }
@@ -54,7 +54,7 @@ public class VendedorResource {
 	@PUT
 	public Response alterarVendedor(Vendedor vendedor) {
 		if (vendedorService.alterarVendedor(vendedor)) {
-			return Response.ok().build();
+			return Response.ok(vendedor).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
 		}

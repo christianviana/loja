@@ -2,10 +2,13 @@ package br.com.queroquero.loja.bo;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe que representa um produto que pode ser vendido
@@ -14,26 +17,20 @@ import javax.persistence.SequenceGenerator;
  */
 @Entity
 public class Produto {
-
+    
 	@Id
     @SequenceGenerator(name = "produtoSeq", sequenceName = "produto_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "produtoSeq")
-	private Long codigo;
+	// o id é usado apenas para o ORM, o mundo externo não o conhece
+	@JsonIgnore
+	private Long id;
+	// código é o campo que identifica o produto externamente
+	@Column(unique = true)
+	private String codigo;
     private String nome;
     private BigDecimal preco;
 
-    public Produto() {
-    	
-    }
-    
-	public Produto(Long codigo, String nome, BigDecimal preco) {
-    	this.codigo = codigo;
-		this.nome = nome;
-    	this.preco = preco;
-    }
-
-    
-    public Long getCodigo() {
+	public String getCodigo() {
     	return this.codigo;
     }
 
@@ -56,7 +53,7 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public void setCodigo(Long codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
     

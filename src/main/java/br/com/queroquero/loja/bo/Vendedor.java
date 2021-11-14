@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Classe que representa um vendedor da loja
  * 
@@ -16,20 +18,14 @@ public class Vendedor {
 	@Id
     @SequenceGenerator(name = "vendedorSeq", sequenceName = "vendedor_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "vendedorSeq")
+	// o id é usado apenas para o ORM, o mundo externo não o conhece
+	@JsonIgnore
 	private Long id;
+	// matrícula é o campo que identifica o vendedor de maneira única
 	@Column(unique = true)
     private String matricula;
     private String nome;
     
-    public Vendedor() {
-    	
-    }
-    
-	public Vendedor(Long id, String matricula, String nome) {
-		this.id = id;
-		this.matricula = matricula;
-    	this.nome = nome;
-    }
 
 	public Long getId() {
 		return id;

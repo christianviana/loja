@@ -24,10 +24,8 @@ public class ProdutoResource {
 		if (produto != null) {
 			return Response.status(Status.CREATED).entity(produto).build();
 		} else {
-			return Response.serverError().build();
+			return Response.status(Status.CONFLICT).entity(new Erro(ErroEnum.ERRO_CRIAR_PRODUTO)).build();
 		}
-// TODO está dando erro se envio pra criar com id informado no payload
-		// como faço pra ignorar o id no payload?
 	}
 
 	@DELETE

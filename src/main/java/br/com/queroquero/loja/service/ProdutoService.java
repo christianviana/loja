@@ -1,9 +1,6 @@
 package br.com.queroquero.loja.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
@@ -11,7 +8,7 @@ import org.jboss.logging.Logger;
 import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dao.ProdutoDAO;
 
-@ApplicationScoped
+@Dependent
 public class ProdutoService {
 	
 	@Inject
@@ -21,8 +18,6 @@ public class ProdutoService {
 	Logger log;
 
 	public Produto criarProduto(Produto produto) {
-		// produtoBuscado = produtoDAO.buscarProduto(produto);
-		// TODO erro ao fazer post com codigo do produto. melhor forma de corrigir?
 		try {
 			return produtoDAO.criarProduto(produto);
 		} catch (Exception e) {
@@ -53,9 +48,5 @@ public class ProdutoService {
 		return false;
 	}
 	
-	// list de produtos mais vendidos
-	public List<Produto> maisVendidos() {	
-		return new ArrayList<>();		
-	}
     
 }
