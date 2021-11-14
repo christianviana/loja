@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -13,9 +14,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
- * Classe que representa um item na venda
+ * Classe que representa um item na venda.
+ * 
+ * As informações do produto são replicadas no item, e não referenciadas, pois uma alteração de cadastro do produto não
+ * pode influenciar nas vendas já realizadas. Ex: troca de descrição, troca de preço, etc.
  */
-
 @Entity
 public class Item {
 
@@ -25,12 +28,7 @@ public class Item {
 	@GeneratedValue(generator = "itemSeq")
 	@JsonIgnore
 	private Long id;
-
-	/**
-	 * as informações do produto são replicadas no item, e não referenciadas, pois
-	 * uma alteração de cadastro do produto não pode influenciar nas vendas já
-	 * realizadas. Ex: troca de descrição, troca de preço, etc.
-	 */
+    
 	private String codigoProduto;
 	private String descricao;
 	private int quantidade;
@@ -39,6 +37,11 @@ public class Item {
     @JsonIgnore
     @ManyToOne
     private Produto produto;
+    
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "venda_numvenda")
+    private Venda venda;
 
     /**
      * Retorna o valor total do item.
