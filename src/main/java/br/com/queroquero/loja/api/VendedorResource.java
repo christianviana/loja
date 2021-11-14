@@ -12,6 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import br.com.queroquero.loja.api.erros.Erro;
+import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
 import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;

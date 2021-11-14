@@ -6,9 +6,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import br.com.queroquero.loja.api.erros.Erro;
+import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Venda;
 import br.com.queroquero.loja.service.VendaService;
-import br.com.queroquero.loja.service.VendedorInexistenteException;
+import br.com.queroquero.loja.service.excecoes.VendedorInexistenteException;
 import io.quarkus.logging.Log;
 
 @Path("/vendas")

@@ -1,4 +1,4 @@
-package br.com.queroquero.loja.api;
+package br.com.queroquero.loja.api.erros;
 
 /**
  * Classe que representa um erro para ser utilizada na Response das chamadas à

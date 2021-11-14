@@ -1,4 +1,4 @@
-package br.com.queroquero.loja.api;
+package br.com.queroquero.loja.api.erros;
 
 public enum ErroEnum {
     

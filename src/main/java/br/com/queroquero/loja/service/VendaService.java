@@ -9,6 +9,7 @@ import org.jboss.logging.Logger;
 import br.com.queroquero.loja.bo.Venda;
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dao.VendaDAO;
+import br.com.queroquero.loja.service.excecoes.VendedorInexistenteException;
 
 @Dependent
 public class VendaService {

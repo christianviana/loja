@@ -11,6 +11,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import br.com.queroquero.loja.api.erros.Erro;
+import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dto.ProdutoPorQtdDTO;
 import br.com.queroquero.loja.service.ProdutoService;

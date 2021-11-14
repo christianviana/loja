@@ -41,7 +41,7 @@ public class Venda {
 	// se for set, o que acontece se vier duplicado no json? ele ignora o 2o,
 	// substitui o 1o, dá erro...
 	// TODO confirmar que coleção usar (concorrência, repetição, performance, ordem)
-	@OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
 	private List<Item> itens = new ArrayList<>();
 
     public Venda() {

@@ -1,4 +1,4 @@
-package br.com.queroquero.loja.service;
+package br.com.queroquero.loja.service.excecoes;
 
 public class VendedorInexistenteException extends RuntimeException {
     
