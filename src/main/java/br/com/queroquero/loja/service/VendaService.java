@@ -4,12 +4,11 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import org.jboss.logging.Logger;
-
 import br.com.queroquero.loja.bo.Venda;
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dao.VendaDAO;
 import br.com.queroquero.loja.service.excecoes.VendedorInexistenteException;
+import io.quarkus.logging.Log;
 
 @Dependent
 public class VendaService {
@@ -19,9 +18,6 @@ public class VendaService {
 	
 	@Inject
 	VendedorService vendedorService;
-
-	@Inject
-	Logger log;
 	
 	/**
      * Cria uma venda e seus itens, se o vendedor informado na venda existir. Os dados do vendedor não são atualizados.
@@ -44,8 +40,7 @@ public class VendaService {
 		try {
 			return vendaDAO.criarVenda(venda);
 		} catch (Exception e) {
-			log.error("Erro ao criar venda: " + venda);
-			log.error(e);
+            Log.error("Erro ao criar venda: " + venda, e);
 			return null;
 		}
 

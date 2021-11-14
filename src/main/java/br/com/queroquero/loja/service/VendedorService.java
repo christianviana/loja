@@ -5,21 +5,17 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import org.jboss.logging.Logger;
-
 import br.com.queroquero.loja.bo.Vendedor;
 import br.com.queroquero.loja.dao.VendedorDAO;
 import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
 import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
+import io.quarkus.logging.Log;
 
 @Dependent
 public class VendedorService {
 
 	@Inject
     VendedorDAO vendedorDAO;
-	
-	@Inject
-	Logger log;
 	
     /**
 	 * Buscar vendedor pela matrícula
@@ -37,8 +33,7 @@ public class VendedorService {
 		try {
 			return vendedorDAO.criarVendedor(vendedor);
 		} catch (Exception e) {
-			log.error("Erro ao criar vendedor: " + vendedor);
-			log.error(e);
+            Log.error("Erro ao criar vendedor: " + vendedor, e);
 			return null;
 		}
 

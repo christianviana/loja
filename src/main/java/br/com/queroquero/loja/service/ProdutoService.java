@@ -5,11 +5,10 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import org.jboss.logging.Logger;
-
 import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dao.ProdutoDAO;
 import br.com.queroquero.loja.dto.ProdutoPorQtdDTO;
+import io.quarkus.logging.Log;
 
 @Dependent
 public class ProdutoService {
@@ -17,15 +16,11 @@ public class ProdutoService {
 	@Inject
     ProdutoDAO produtoDAO;
 
-	@Inject
-	Logger log;
-
 	public Produto criarProduto(Produto produto) {
 		try {
 			return produtoDAO.criarProduto(produto);
 		} catch (Exception e) {
-			log.error("Erro ao criar produto: " + produto);
-			log.error(e);
+            Log.error("Erro ao criar produto: " + produto, e);
 			return null;
 		}
 
