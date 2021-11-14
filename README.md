@@ -85,6 +85,9 @@ curl -X 'GET' \
 
 
 https://quarkus.io/guides/deploying-to-kubernetes
+https://quarkus.io/guides/cdi-reference#container-managed-concurrency
+https://stackoverflow.com/questions/60071059/how-is-it-safe-to-inject-entitymanager-in-applicationscoped-bean-in-quarkus
+
 
 - criar os serviços separadamente, dividindo por área de negócio?
 ou um único?
