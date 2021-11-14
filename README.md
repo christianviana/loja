@@ -9,7 +9,7 @@ Este projeto usa o framework Java Quarkus: https://quarkus.io/
 - Docker: https://www.docker.com/
 
 
-## Pré-instalação: instalando o banco de dados
+## Pré-instalação: instalando o servidor de banco de dados
 
 Para instalar uma imagem docker executando um servidor de banco de dados Postgresql, execute o comando abaixo:
 
@@ -26,11 +26,13 @@ MELHOR EU FORNECER A IMAGEM
  
 ## Instalação (opção 1): via fontes no GitHub
 
-1. Clonar o repositório
+1. Clonar o [repositório](https://github.com/christianviana/loja) em sua máquina local.
 
-2. Executar a aplicação no modo desenvolvimento (dev mode)
+2. Dentro do diretório raiz do repositório, executar o comando:
 
 > `./mvnw compile quarkus:dev`
+
+> Este comando executa a aplicação no modo desenvolvimento (dev mode).
 
 ## Instalação (opção 2): via imagem Docker
 
@@ -42,16 +44,42 @@ MELHOR EU FORNECER A IMAGEM
 ## Documentação da API
 
 
-- Link
-The Quarkus smallrye-openapi extension comes with a swagger-ui extension embedding a properly configured Swagger UI page.
+- A documentação da API foi gerada no padrão Open API com o auxílio da extensão Quarkus smallrye-openapi e
+pode ser acessa na url: 
 
-http://localhost:8080/q/swagger-ui/
+> `http://localhost:8080/q/swagger-ui/`
 
-- Exemplos
+## Alguns exemplos de utilização da API:
 
-pegar alguns exemplos em  http://localhost:8080/q/swagger-ui/
+- Criação de Produto:
 
+```
+ curl -X 'POST' \
+  'http://localhost:8080/api/v1/produtos' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "codigo": "P1",
+  "nome": "produto A",
+  "preco": 10.25
+}' -w "\n"
+```
 
+- Busca de Vendedor por Matrícula:
+
+```
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/vendedores/MM' \
+  -H 'accept: */*' -w "\n"
+```
+
+- Busca a lista dos vendedores por maior valor vendido:
+
+```
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/vendedores/maiores-por-valor' \
+  -H 'accept: */*' -w "\n"
+```
 
 ## Arquitetura para alta carga nos endpoints de estatística
 
