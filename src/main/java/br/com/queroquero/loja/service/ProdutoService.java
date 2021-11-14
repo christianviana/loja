@@ -51,7 +51,12 @@ public class ProdutoService {
 		return false;
 	}
 	
-    // list de produtos mais vendidos
+    /**
+     * Busca os produtos mais vendidos.
+     * 
+     * @return os produtos mais vendidos e suas respectivas quantidades vendidas, ordenados em ordem descrescente das
+     *         quantidades vendidas.
+     */
     public List<ProdutoPorQtdDTO> buscarProdutosMaisVendidos() {
         return produtoDAO.buscarProdutosMaisVendidos();
     }

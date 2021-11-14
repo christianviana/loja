@@ -65,12 +65,22 @@ public class VendedorService {
 
 	}
 
-    // list de vendedores com maior número de vendas
+    /**
+     * Busca os vendedores que mais venderam por número de vendas.
+     * 
+     * @return os vendedores que mais venderam por número de vendas, e as respecticas quantidades vendidas, ordenados em
+     *         ordem descrescente de quantidade de vendas
+     */
     public List<VendedorPorNumVendasDTO> buscarMaioresVendedoresPorNumVendas() {
         return vendedorDAO.buscarMaioresVendedoresPorNumVendas();
     }
     
-    // list de vendedores por valor vendido
+    /**
+     * Busca os vendedores que mais venderam por valor vendido.
+     * 
+     * @return os vendedores que mais venderam por valor vendido e o respectivo valor vendido, ordenados em ordem
+     *         descrescente do valor vendido
+     */
     public List<VendedorPorValorVendasDTO> buscarMaioresVendedoresPorValorVendas() {
         return vendedorDAO.buscarMaioresVendedoresPorValorVendas();
     }
