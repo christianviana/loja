@@ -5,13 +5,18 @@ import br.com.queroquero.loja.bo.Produto;
 public class ProdutoPorQtdDTO {
     
     private Produto produto;
-    private int qtdVendida;
+    private long qtdVendida;
+    
+    public ProdutoPorQtdDTO(Produto produto, long qtdVendida) {
+        this.produto = produto;
+        this.qtdVendida = qtdVendida;
+    }
     
     public Produto getProduto() {
         return produto;
     }
     
-    public int getQtdVendida() {
+    public long getQtdVendida() {
         return qtdVendida;
     }
     
@@ -19,7 +24,7 @@ public class ProdutoPorQtdDTO {
         this.produto = produto;
     }
     
-    public void setQtdVendida(int qtdVendida) {
+    public void setQtdVendida(long qtdVendida) {
         this.qtdVendida = qtdVendida;
     }
 }

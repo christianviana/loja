@@ -21,10 +21,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Produto {
     
+    // @formatter:off
+    
     public static final String NOME_HQL_PRODUTOS_MAIS_VENDIDOS = "buscarProdutosMaisVendidos";
-    public static final String HQL_PRODUTOS_MAIS_VENDIDOS = "from Produto p";
-
-	@Id
+    public static final String HQL_PRODUTOS_MAIS_VENDIDOS = 
+            "select new br.com.queroquero.loja.dto.ProdutoPorQtdDTO(produto, sum(item.quantidade)) "
+             + "from Item item join item.produto produto "
+             + "group by produto.id order by sum(item.quantidade) desc";
+    
+    // @formatter:on
+    
+    @Id
     @SequenceGenerator(name = "produtoSeq", sequenceName = "produto_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "produtoSeq")
 	// o id é usado apenas para o ORM, o mundo externo não o conhece

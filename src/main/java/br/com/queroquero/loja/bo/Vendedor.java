@@ -18,13 +18,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NamedQuery(name = Vendedor.NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR, query = Vendedor.HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR)
 public class Vendedor {
 
+    // @formatter:off
     public static final String NOME_HQL_VENDEDORES_MAIS_VENDAS = "buscarVendedoresMaisVendas";
-    public static final String HQL_VENDEDORES_MAIS_VENDAS = "select new br.com.queroquero.loja.dto.VendedorPorNumVendasDTO(vendedor, count(venda.id)) "
-            + "from Venda venda join venda.vendedor vendedor group by vendedor.id order by count(venda.id) desc";
+    public static final String HQL_VENDEDORES_MAIS_VENDAS = 
+            "select new br.com.queroquero.loja.dto.VendedorPorNumVendasDTO(vendedor, count(venda.id)) "
+            + "from Venda venda join venda.vendedor vendedor "
+            + "group by vendedor.id order by count(venda.id) desc";
     
     public static final String NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = "buscarVendedoresMaioresVendasValor";
-    public static final String HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = "select new br.com.queroquero.loja.dto.VendedorPorValorVendasDTO(vendedor, sum(venda.valorTotal)) "
-            + "from Venda venda join venda.vendedor vendedor group by vendedor.id order by sum(venda.valorTotal) desc";
+    public static final String HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR = 
+            "select new br.com.queroquero.loja.dto.VendedorPorValorVendasDTO(vendedor, sum(venda.valorTotal)) "
+            + "from Venda venda join venda.vendedor vendedor "
+            + "group by vendedor.id order by sum(venda.valorTotal) desc";
+    
+    // @formatter:on
     
 	@Id
     @SequenceGenerator(name = "vendedorSeq", sequenceName = "vendedor_id_seq", allocationSize = 1, initialValue = 1)

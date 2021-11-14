@@ -64,8 +64,24 @@ VALUES(nextval('venda_id_seq'), '4.31', 3);
 
 
 
+INSERT INTO
+public.item (id, codigoproduto, descricao, quantidade, valorunitario, produto_id) 
+VALUES(nextval('item_id_seq'), 1, 'o produto1', 1, '4.31', 1);
 
 
+INSERT INTO
+public.item (id, codigoproduto, descricao, quantidade, valorunitario, produto_id) 
+VALUES(nextval('item_id_seq'), 1, 'o produto1', 2, '5.31', 1);
+
+
+INSERT INTO
+public.item (id, codigoproduto, descricao, quantidade, valorunitario, produto_id) 
+VALUES(nextval('item_id_seq'), 1, 'o produto3', 1, '5.31', 2);
+
+
+INSERT INTO
+public.item (id, codigoproduto, descricao, quantidade, valorunitario, produto_id) 
+VALUES(nextval('item_id_seq'), 1, 'o produto3', 4, '5.31', 3);
 
 
 

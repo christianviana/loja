@@ -23,20 +23,19 @@ public class VendaService {
 	Logger log;
 	
 	/**
-	 * Cria uma venda e seus itens, se o vendedor informado na venda existir. Os
-	 * dados do vendedor não são atualizados. Se o vendedor não existir, a venda não
-	 * é criada.
-	 * 
-	 * @param venda A venda a ser criada.
-	 * @return A venda criada. Retorna <code>null</code> se não for possível criar a
-	 *         venda.
-	 */
+     * Cria uma venda e seus itens, se o vendedor informado na venda existir. Os dados do vendedor não são atualizados.
+     * Se o vendedor não existir, a venda não é criada.
+     * 
+     * @param venda A venda a ser criada.
+     * @return A venda criada. Retorna <code>null</code> se não for possível criar a venda.
+     * @throws VendedorInexistenteException
+     */
 	@Transactional
-	public Venda criarVenda(Venda venda) {
+    public Venda criarVenda(Venda venda) throws VendedorInexistenteException {
 
 		Vendedor vendedor = vendedorService.buscarPorMatricula(venda.getVendedor().getMatricula());
 		if (vendedor == null) {
-			return null;
+            throw new VendedorInexistenteException();
 		} else {
 			venda.setVendedor(vendedor);
 		}

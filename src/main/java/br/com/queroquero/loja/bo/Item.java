@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +36,9 @@ public class Item {
 	private int quantidade;
 	private BigDecimal valorUnitario;
 
+    @JsonIgnore
+    @ManyToOne
+    private Produto produto;
 
     /**
      * Retorna o valor total do item.
