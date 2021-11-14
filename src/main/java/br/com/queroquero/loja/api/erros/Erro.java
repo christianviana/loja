@@ -1,10 +1,8 @@
 package br.com.queroquero.loja.api.erros;
 
 /**
- * Classe que representa um erro para ser utilizada na Response das chamadas à
- * API, quando houver erro
+ * Classe que representa um erro para ser utilizada na Response das chamadas à API, quando houver erro
  * 
- *
  */
 public class Erro {
 

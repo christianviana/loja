@@ -1,3 +1,6 @@
+/**
+ * Classe com os tipos de erros possíveis de serem retornados pela API
+ */
 package br.com.queroquero.loja.api.erros;
 
 public enum ErroEnum {
