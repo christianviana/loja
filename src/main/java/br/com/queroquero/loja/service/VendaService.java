@@ -52,7 +52,9 @@ public class VendaService {
         
         for (Iterator<Item> iterator = venda.getItens().iterator(); iterator.hasNext();) {
             Item item = iterator.next();
+            // necessário devido ao relacionamento ser bidirecional no hibernate
             item.setVenda(venda);
+            // necessário para salvar o relacionamento com produto no banco de dados
             Produto produto = produtoService.buscarPorCodigo(item.getCodigoProduto());
             if (produto == null) {
                 throw new ProdutoInexistenteException();

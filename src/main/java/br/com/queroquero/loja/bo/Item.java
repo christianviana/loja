@@ -37,6 +37,10 @@ public class Item {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = false)
+    /**
+     * Aqui é feito o relacionamento com o produto no banco de dados, para facilitar pesquisas que relacionam vendas com
+     * produtos
+     */
     private Produto produto;
     
     @ManyToOne
