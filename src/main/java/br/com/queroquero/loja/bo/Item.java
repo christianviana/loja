@@ -29,18 +29,19 @@ public class Item {
 	@JsonIgnore
 	private Long id;
     
-	private String codigoProduto;
+    private String codigoProduto;
 	private String descricao;
 	private int quantidade;
 	private BigDecimal valorUnitario;
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Produto produto;
     
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "venda_numvenda")
+    @JoinColumn(name = "venda_numvenda", nullable = false)
     private Venda venda;
 
     /**
@@ -58,38 +59,62 @@ public class Item {
 
     }
 
-	public String getCodigoProduto() {
-		return codigoProduto;
-	}
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    public int getQuantidade() {
+        return quantidade;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 
-	public BigDecimal getValorUnitario() {
-		return valorUnitario;
-	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setCodigoProduto(String codigoProduto) {
-		this.codigoProduto = codigoProduto;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
+    }
+    
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+    
+    public Produto getProduto() {
+        return produto;
+    }
+    
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
+    public Venda getVenda() {
+        return venda;
+    }
+    
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+    
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+    
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+    
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -107,10 +132,10 @@ public class Item {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", codigoProduto=" + codigoProduto + ", descricao=" + descricao + ", valorUnitario="
-				+ valorUnitario + ", quantidade=" + quantidade + "]";
-	}
+    @Override
+    public String toString() {
+        return "Item [id=" + id + ", codigoProduto=" + codigoProduto + ", descricao=" + descricao + ", quantidade="
+                + quantidade + ", valorUnitario=" + valorUnitario + ", produto=" + produto + ", venda=" + venda + "]";
+    }
 
 }

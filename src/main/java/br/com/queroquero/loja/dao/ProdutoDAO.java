@@ -5,6 +5,8 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import br.com.queroquero.loja.bo.Produto;
@@ -40,6 +42,23 @@ public class ProdutoDAO {
 		em.merge(produto);
 
 	}
+    
+    /**
+     * Buscar o produto pelo código
+     *
+     * @param codigo código do produto
+     * @return O produto
+     */
+    public Produto buscarPorCodigo(String codigo) {
+        
+        TypedQuery<Produto> query = em.createQuery("SELECT p FROM Produto p WHERE p.codigo = :codigo", Produto.class);
+        query.setParameter("codigo", codigo);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     
     /**
      * Busca os produtos mais vendidos.

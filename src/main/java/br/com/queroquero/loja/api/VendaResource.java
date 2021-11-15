@@ -12,6 +12,7 @@ import br.com.queroquero.loja.api.erros.Erro;
 import br.com.queroquero.loja.api.erros.ErroEnum;
 import br.com.queroquero.loja.bo.Venda;
 import br.com.queroquero.loja.service.VendaService;
+import br.com.queroquero.loja.service.excecoes.ProdutoInexistenteException;
 import br.com.queroquero.loja.service.excecoes.VendedorInexistenteException;
 
 @Path("/vendas")
@@ -30,6 +31,10 @@ public class VendaResource {
             return Response.status(Status.CREATED).entity(venda).build();
         } catch (VendedorInexistenteException e) {
             Erro erro = new Erro(ErroEnum.ERRO_VENDEDOR_INEXISTENTE_AO_CRIAR_VENDA);
+            LOG.error(erro.getMsgUsuario());
+            return Response.status(Status.CONFLICT).entity(erro).build();
+        } catch (ProdutoInexistenteException e) {
+            Erro erro = new Erro(ErroEnum.ERRO_PRODUTO_INEXISTENTE_AO_CRIAR_VENDA);
             LOG.error(erro.getMsgUsuario());
             return Response.status(Status.CONFLICT).entity(erro).build();
         } catch (Exception e) {

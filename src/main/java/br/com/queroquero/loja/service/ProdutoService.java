@@ -50,6 +50,16 @@ public class ProdutoService {
 	}
 	
     /**
+     * Buscar produto por código
+     *
+     * @param codigo Código do produto
+     * @return O produto. Retorna <code>null</code> se o produto não for encontrado.
+     */
+    public Produto buscarPorCodigo(String codigo) {
+        return produtoDAO.buscarPorCodigo(codigo);
+    }
+    
+    /**
      * Busca os produtos mais vendidos.
      * 
      * @return os produtos mais vendidos e suas respectivas quantidades vendidas, ordenados em ordem descrescente das

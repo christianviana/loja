@@ -12,7 +12,8 @@ public enum ErroEnum {
     ERRO_BUSCA_MAIORES_VENDEDORES_VALOR(4, "Erro ao buscar os maiores vendedores por valor de venda."), 
     ERRO_BUSCA_MAIORES_VENDEDORES_NUM_VENDAS(5, "Erro ao buscar os maiores vendedores por número de vendas."), 
     ERRO_BUSCA_PRODUTOS_MAIS_VENDIDOS(6, "Erro ao buscar os produtos mais vendidos."),
-    ERRO_VENDEDOR_INEXISTENTE_AO_CRIAR_VENDA(7, "Erro ao criar a venda: vendedor não existe.")
+    ERRO_VENDEDOR_INEXISTENTE_AO_CRIAR_VENDA(7, "Erro ao criar a venda: vendedor não existe."),
+    ERRO_PRODUTO_INEXISTENTE_AO_CRIAR_VENDA(8, "Erro ao criar a venda: produto não existe."),
     ;
     // @formatter:on
     

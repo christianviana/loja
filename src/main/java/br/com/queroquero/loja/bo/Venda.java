@@ -1,14 +1,15 @@
 package br.com.queroquero.loja.bo;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -34,6 +35,7 @@ public class Venda {
 	private BigDecimal valorTotal;	
 
 	@ManyToOne
+    @JoinColumn(nullable = false)
 	private Vendedor vendedor;
 	
 	// TODO organizar pra não ter o mesmo produto duas vezes na venda? posso
@@ -41,8 +43,8 @@ public class Venda {
 	// se for set, o que acontece se vier duplicado no json? ele ignora o 2o,
 	// substitui o 1o, dá erro...
 	// TODO confirmar que coleção usar (concorrência, repetição, performance, ordem)
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Item> itens = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda")
+    private List<Item> itens = new ArrayList<>();
 
     public Venda() {
         
@@ -65,7 +67,7 @@ public class Venda {
 		return vendedor;
 	}
 
-    public Set<Item> getItens() {
+    public List<Item> getItens() {
 		return itens;
 	}
 
@@ -81,7 +83,7 @@ public class Venda {
 		this.vendedor = vendedor;
 	}
 
-    public void setItens(Set<Item> itens) {
+    public void setItens(List<Item> itens) {
 		this.itens = itens;
 	}
 
