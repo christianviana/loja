@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import br.com.queroquero.loja.bo.Item;
 import br.com.queroquero.loja.bo.Venda;
 import br.com.queroquero.loja.bo.Vendedor;
+import io.quarkus.test.junit.QuarkusTest;
 
+@QuarkusTest
 class VendaResourceTest {
     
     @Test
