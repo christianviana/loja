@@ -84,15 +84,22 @@ curl -X 'GET' \
 
 ## Arquitetura para alta carga nos endpoints de estatística
 
-https://quarkus.io/guides/cdi-reference#container-managed-concurrency
-https://stackoverflow.com/questions/60071059/how-is-it-safe-to-inject-entitymanager-in-applicationscoped-bean-in-quarkus
+Algumas mudanças que podem ser feitas para que os endpoints de estatística suportem uma carga maior:
 
-- caching do hibernate ORM do quarkus: https://quarkus.io/guides/hibernate-orm#caching-of-queries
-- jar com parte de negócio pra baixo, pra poder reutilizar modelo, serviço, dao, etc tanto no crud quanto nas estatísticas
-- microserviços separados com endpoints de estatística
-- escalar horizontalmente com beans do tipo applicationScoped - menor footprint de memória de menor tempo de criação de request, pois não precisa criar e injetar o bean
-- uasr k8s
+1 - Uso de caching de queries do Hibernate: https://quarkus.io/guides/hibernate-orm#caching-of-queries
 
-- criar diagrama
+2 - Criar uma aplicação para a parte CRUD e outra separada para a parte de estatística, seguindo a seguinte arquitetura:
+
+ - Empacotar as camas de negócio, serviço e DAO em um jar, para que o modelo e regras de negócio possam ser reutilizados
+  tanto na aplicação de CRUD quanto na de estatísticas
+  - Criar duas aplicações separadas, uma para CRUD e outra para estatísticas, as duas tem como dependência o JAR do negócio
+  - A aplicação CRUD depende do JAR de negócio e acrescrenta os endpoints do CRUD
+  - A aplicação de estatística também depende do JAR de negócio, mas com apenas os endpoints de estatística
+  - A aplicação de estatística pode fazer de bens do tipo ApplicationScoped, pois são apenas de pesquisa e não terão problemas de concorrência. Com esses escopo, espera-se menor footprint de memória de beans, e menor tempo de criação de request, pois não precisa criar e injetar o bean a cada usuário diferente  
+  - Usar [Kubernetes](https://kubernetes.io/) para criar uma arquitetura elástica, que escale horizontalmente automaticamente quando a carga aumentar
+  
+  - Uma esboço dessa solução pode ser visto [aqui](criar diagrama)
+
+
 
 
