@@ -2,7 +2,7 @@ package br.com.queroquero.loja.service;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
@@ -11,7 +11,7 @@ import br.com.queroquero.loja.bo.Produto;
 import br.com.queroquero.loja.dao.ProdutoDAO;
 import br.com.queroquero.loja.dto.ProdutoPorQtdDTO;
 
-@ApplicationScoped
+@SessionScoped
 public class ProdutoService {
 	
     private static final Logger LOG = Logger.getLogger(ProdutoService.class);

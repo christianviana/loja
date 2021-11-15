@@ -2,7 +2,7 @@ package br.com.queroquero.loja.service;
 
 import java.util.Iterator;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -16,7 +16,7 @@ import br.com.queroquero.loja.dao.VendaDAO;
 import br.com.queroquero.loja.service.excecoes.ProdutoInexistenteException;
 import br.com.queroquero.loja.service.excecoes.VendedorInexistenteException;
 
-@ApplicationScoped
+@SessionScoped
 public class VendaService {
 
     private static final Logger LOG = Logger.getLogger(VendaService.class);
