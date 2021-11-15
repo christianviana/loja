@@ -1,9 +1,9 @@
 package br.com.queroquero.loja.bo;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Classe que representa uma venda realizada
+ * Classe que representa uma venda realizada.
  */
 @Entity
 public class Venda {
@@ -42,7 +42,7 @@ public class Venda {
 	// substitui o 1o, dá erro...
 	// TODO confirmar que coleção usar (concorrência, repetição, performance, ordem)
     @OneToMany(cascade = CascadeType.ALL)
-	private List<Item> itens = new ArrayList<>();
+    private Set<Item> itens = new HashSet<>();
 
     public Venda() {
         
@@ -65,7 +65,7 @@ public class Venda {
 		return vendedor;
 	}
 
-	public List<Item> getItens() {
+    public Set<Item> getItens() {
 		return itens;
 	}
 
@@ -81,7 +81,7 @@ public class Venda {
 		this.vendedor = vendedor;
 	}
 
-	public void setItens(List<Item> itens) {
+    public void setItens(Set<Item> itens) {
 		this.itens = itens;
 	}
 
