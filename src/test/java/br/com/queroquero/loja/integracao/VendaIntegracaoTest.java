@@ -1,4 +1,4 @@
-package br.com.quero.quero.loja.integracao;
+package br.com.queroquero.loja.integracao;
 
 import static io.restassured.RestAssured.given;
 
