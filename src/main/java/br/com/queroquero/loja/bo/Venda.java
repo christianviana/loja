@@ -2,6 +2,7 @@ package br.com.queroquero.loja.bo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,10 +38,9 @@ public class Venda {
 	@ManyToOne
     @JoinColumn(nullable = false)
 	private Vendedor vendedor;
-	
-    // TODO confirmar que coleção usar (concorrência)
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda")
-    private List<Item> itens = new ArrayList<>();
+    private List<Item> itens = Collections.synchronizedList(new ArrayList<>());
 
     public Venda() {
         
