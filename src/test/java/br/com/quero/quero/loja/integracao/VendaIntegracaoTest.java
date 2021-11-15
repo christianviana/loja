@@ -1,4 +1,4 @@
-package br.com.queroquero.loja.api;
+package br.com.quero.quero.loja.integracao;
 
 import static io.restassured.RestAssured.given;
 
@@ -14,7 +14,7 @@ import br.com.queroquero.loja.bo.Vendedor;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-class VendaResourceTest {
+class VendaIntegracaoTest {
     
     @Test
     void testCriarVendaNaoExistenteOK() {

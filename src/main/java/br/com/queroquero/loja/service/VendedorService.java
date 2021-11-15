@@ -2,7 +2,7 @@ package br.com.queroquero.loja.service;
 
 import java.util.List;
 
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
@@ -12,7 +12,7 @@ import br.com.queroquero.loja.dao.VendedorDAO;
 import br.com.queroquero.loja.dto.VendedorPorNumVendasDTO;
 import br.com.queroquero.loja.dto.VendedorPorValorVendasDTO;
 
-@Dependent
+@ApplicationScoped
 public class VendedorService {
 
     private static final Logger LOG = Logger.getLogger(VendedorService.class);

@@ -1,56 +1,34 @@
 package br.com.queroquero.loja.api;
 
 import static io.restassured.RestAssured.given;
+import static org.mockito.Mockito.when;
 
+import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 
 import br.com.queroquero.loja.bo.Vendedor;
+import br.com.queroquero.loja.service.VendedorService;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectMock;
 
 @QuarkusTest
 class VendedorResourceTest {
-    
-    // @Test
-    // void testBuscarVendedorExistente() {
-    // Vendedor vendedor = new Vendedor();
-    // vendedor.setMatricula("MJ");
-    // vendedor.setNome("Maria Joana");
-    //
-    // // cria a 1a vez e dá 201
-    // given().contentType("application/json").body(vendedor).when().post("/api/v1/vendedores").then().statusCode(201);
-    //
-    // given().when().get("/api/v1/vendedores/MJ").then().statusCode(200)
-    // .body(StringContains.containsString("Maria Joana"));
-    // }
 
-	@Test
-    void testBuscarVendedorNaoExistente() {
-		given().when().get("/api/v1/vendedores/MM2").then().statusCode(404);
-	}
+    @InjectMock
+	private VendedorService vendedorService;
+
 
     @Test
-    void testCriarVendedorExistente() {
-        Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("MJ");
-        vendedor.setNome("Maria Joana");
+    void testUsuarioExistente() {
         
-        // cria a 1a vez e dá 201
-        given().contentType("application/json").body(vendedor)
-            .when().post("/api/v1/vendedores").then()
-                .statusCode(201);
+        Vendedor vendResposta = new Vendedor();
+        vendResposta.setNome("JJ");
+        vendResposta.setMatricula("João José");
+        when(vendedorService.buscarPorMatricula(ArgumentMatchers.any())).thenReturn(vendResposta);
         
-        // cria a 2a vez e dá 409
-        given().contentType("application/json").body(vendedor).when().post("/api/v1/vendedores").then().statusCode(409);
+        given().when().get("/api/v1/vendedores/JJ").then().statusCode(200)
+                .body(StringContains.containsString("João José"));
     }
-
-	@Test
-    void testCriarVendedorNaoExistente() {
-        Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("CR");
-        vendedor.setNome("Cleiton Ramos ");        
-        given().contentType("application/json").body(vendedor)
-            .when().post("/api/v1/vendedores").then()
-            .statusCode(201);
-	}
 
 }
