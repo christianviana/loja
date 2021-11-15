@@ -102,5 +102,52 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 colocar banco no diagrama?
 
 
+## Algumas escolhas arquiteturais do projeto
+
+-  achar um servidor web light-weighted
+micronaut é uma boa opção, já que sprint está proibido
+
+achei doc falando que quarkus tem performance melhor
+https://simply-how.com/quarkus-vs-micronaut
+
+micronaut com muitas opções complicadas na geração
+quarkus mais simples e com opção de geração básica com o que eu preciso 
+e doc mais fácil e farta, vários tutoriais simples e completos
+já vem preparado pra docker
+great features
+security
+validation
+caching
+
+decidido ir com o quarkus
+1. montar estrutura do projeto: maven com jersey, junit e h2  
+ok. montei com quarkus. tem jax-rs, di, junit, mockito?, logs? jackson? swagger?, 
+ instalei agroal , hibernate ORM e postgres jdbc
+- decidido que será um único microserviço pra escalar horizontalmente, prever banco único acessado pelas instancias dos microservicos e não esquecer que os serviços podem morrer e ser substituidos por outro. O cliente precisa lidar com isso tb
+- ia usar H2, mas resolvi usar ou postgresql em conteiner docker
+- por precaução quanto à concorrência, resolvi colocar http-session. precisaria mais testes pra avaliar
+- não coloquei https
+
+resolvi não escrever testes unitários das classes bo e dao, classes muito simples
+escrevi testes unitários das classes service, acabou ficando muito simples também, mas fiz alguns
+escrevi de integração http com rest assured - só alguns  
+
+## Melhorias a serem feitas
+
+- Fazer dto e não usar entidade, para evitar malabarismos
+- Os serviços foram implementados com escopo de sessão, usando o SDFSDFSDF. Estudar um pouco mais os efeitos do ApplicationScoped para verificar se ele seria seguro em um ambiente de alta concorrência. E realizar testes com alta carga.
+- Testes unitários: aumentar cobertura
+- Testes de integração: fiz apenas alguns para ver como funciona, fazer mais
+- Testes de integração: dependem dos dados de carga do banco, verificar se não há maneira melhor de fazer
+
+## Pendências
+
+- alguns testes unitários (service)
+- alguns testes de integração
+- ver questão do docker com banco (quark permite criar a partir de outra base? vasculhar docs)
+- colocar o servlet pra ter session bean?
+- diagrama
+- melhorar arquivo de carga incial do banco para testes
+- revisar este readme
 
 
