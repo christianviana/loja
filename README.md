@@ -99,38 +99,35 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
   
   - Uma esboço dessa solução pode ser visto [aqui](criar diagrama)
 
-colocar banco no diagrama?
+
+## Histórico de escolhas arquiteturais do projeto
+
+1. Missão: achar um servidor web light-weighted, já que não podia usar Spring Boot
+
+- Micronaut parecia uma boa opção
+- Achei doc falando que quarkus tem performance melhor: https://simply-how.com/quarkus-vs-micronaut
+- Micronaut com muitas opções complicadas na geração
+- Quarkus mais simples e com opção de geração básica com o que eu preciso 
+- E doc mais fácil e farta, vários tutoriais simples e completos
+- Já vem preparado pra docker
+- Great features: security, validation, caching
+- Decidido ir com o quarkus
 
 
-## Algumas escolhas arquiteturais do projeto
+2. Montar estrutura do projeto: maven com jersey, junit, etc 
 
--  achar um servidor web light-weighted
-micronaut é uma boa opção, já que sprint está proibido
+- Montei com quarkus, jax-rs, DI, Junit, Mockito, logs, jackson, swagger
+- Instalei agroal (pool de conexões), Hibernate ORM e postgres jdbc
+- Ia usar H2 para desenvolvimento, mas resolvi usar postgresql em contâiner docker
 
-achei doc falando que quarkus tem performance melhor
-https://simply-how.com/quarkus-vs-micronaut
+3. Decidido que será um único microserviço pra escalar horizontalmente, com banco único acessado pelas instâncias dos microservicos 
 
-micronaut com muitas opções complicadas na geração
-quarkus mais simples e com opção de geração básica com o que eu preciso 
-e doc mais fácil e farta, vários tutoriais simples e completos
-já vem preparado pra docker
-great features
-security
-validation
-caching
-
-decidido ir com o quarkus
-1. montar estrutura do projeto: maven com jersey, junit e h2  
-ok. montei com quarkus. tem jax-rs, di, junit, mockito?, logs? jackson? swagger?, 
- instalei agroal , hibernate ORM e postgres jdbc
-- decidido que será um único microserviço pra escalar horizontalmente, prever banco único acessado pelas instancias dos microservicos e não esquecer que os serviços podem morrer e ser substituidos por outro. O cliente precisa lidar com isso tb
-- ia usar H2, mas resolvi usar ou postgresql em conteiner docker
-- por precaução quanto à concorrência, resolvi colocar http-session. precisaria mais testes pra avaliar
-- não coloquei https
-
-resolvi não escrever testes unitários das classes bo e dao, classes muito simples
-escrevi testes unitários das classes service, acabou ficando muito simples também, mas fiz alguns
-escrevi de integração http com rest assured - só alguns  
+4. Por precaução quanto à concorrência, resolvi colocar http-session, precisaria mais testes pra avaliar
+5. Não coloquei https, não era requisito
+6. Testes
+	- Resolvi não escrever testes unitários das classes bo e dao, classes muito simples
+	- Escrevi testes unitários das classes service. Acabaram ficando muito simples também, mas fiz alguns
+	- Escrevi alguns teste de integração com rest assured 
 
 ## Melhorias a serem feitas
 
@@ -143,11 +140,13 @@ escrevi de integração http com rest assured - só alguns
 ## Pendências
 
 - alguns testes unitários (service)
+
 - alguns testes de integração
-- ver questão do docker com banco (quark permite criar a partir de outra base? vasculhar docs)
-- colocar o servlet pra ter session bean?
-- diagrama
-- melhorar arquivo de carga incial do banco para testes
+
+- fazer diagrama colocar banco no diagrama?
+- melhorar arquivo de carga inicial do banco para testes
+
+- testar image docker (resolver questão da rede)
 - revisar este readme
 
 
