@@ -116,26 +116,27 @@ public class Item {
     }
     
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public int hashCode() {
+        return Objects.hash(codigoProduto);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		return Objects.equals(id, other.id);
-	}
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Item other = (Item) obj;
+        return Objects.equals(codigoProduto, other.codigoProduto);
+    }
+    
     @Override
     public String toString() {
         return "Item [id=" + id + ", codigoProduto=" + codigoProduto + ", descricao=" + descricao + ", quantidade="
                 + quantidade + ", valorUnitario=" + valorUnitario + ", produto=" + produto + ", venda=" + venda + "]";
     }
+
 
 }
