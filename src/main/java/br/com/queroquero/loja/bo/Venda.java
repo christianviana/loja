@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Classe que representa uma venda realizada.
+ * Classe que representa uma venda realizada. A coleção de itens da venda permite itens repetidos.
  */
 @Entity
 public class Venda {
@@ -38,11 +38,7 @@ public class Venda {
     @JoinColumn(nullable = false)
 	private Vendedor vendedor;
 	
-	// TODO organizar pra não ter o mesmo produto duas vezes na venda? posso
-	// deixar..
-	// se for set, o que acontece se vier duplicado no json? ele ignora o 2o,
-	// substitui o 1o, dá erro...
-	// TODO confirmar que coleção usar (concorrência, repetição, performance, ordem)
+    // TODO confirmar que coleção usar (concorrência)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda")
     private List<Item> itens = new ArrayList<>();
 
