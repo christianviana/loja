@@ -29,7 +29,7 @@ public class Item {
 	@JsonIgnore
 	private Long id;
     
-    private String codigoProduto;
+    private Long codigoProduto;
 	private String descricao;
 	private int quantidade;
 	private BigDecimal valorUnitario;
@@ -111,11 +111,11 @@ public class Item {
         this.venda = venda;
     }
     
-    public String getCodigoProduto() {
+    public Long getCodigoProduto() {
         return codigoProduto;
     }
     
-    public void setCodigoProduto(String codigoProduto) {
+    public void setCodigoProduto(Long codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
     

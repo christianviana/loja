@@ -27,13 +27,17 @@ public class VendedorService {
 	 * @return O vendedor. Retorna <code>null</code> se o vendedor não for
 	 *         encontrado.
 	 */
-    public Vendedor buscarPorMatricula(String matricula) {
+    public Vendedor buscarPorMatricula(Long matricula) {
         return vendedorDAO.buscarPorMatricula(matricula);    	
     }
     
 
 	public Vendedor criarVendedor(Vendedor vendedor) {
-		try {
+        
+        // nececessário para evitar problemas com Hibernate se a matrícula vier informado no JSON da chamada de criação
+        
+        vendedor.setMatricula(null);
+        try {
 			return vendedorDAO.criarVendedor(vendedor);
 		} catch (Exception e) {
             LOG.error("Erro ao criar vendedor: " + vendedor, e);

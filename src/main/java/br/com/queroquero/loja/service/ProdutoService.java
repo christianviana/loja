@@ -20,7 +20,11 @@ public class ProdutoService {
     ProdutoDAO produtoDAO;
     
 	public Produto criarProduto(Produto produto) {
-		try {
+        
+        // nececessário para evitar problemas com Hibernate se o codigo vier informado no JSON da chamada de criação
+        produto.setCodigo(null);
+        
+        try {
 			return produtoDAO.criarProduto(produto);
 		} catch (Exception e) {
             LOG.error("Erro ao criar produto: " + produto, e);
@@ -55,7 +59,7 @@ public class ProdutoService {
      * @param codigo Código do produto
      * @return O produto. Retorna <code>null</code> se o produto não for encontrado.
      */
-    public Produto buscarPorCodigo(String codigo) {
+    public Produto buscarPorCodigo(Long codigo) {
         return produtoDAO.buscarPorCodigo(codigo);
     }
     

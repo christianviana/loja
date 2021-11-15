@@ -59,8 +59,7 @@ pode ser acessa na url:
   'http://localhost:8080/api/v1/produtos' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "codigo": "P1",
+  -d '{  
   "nome": "produto A",
   "preco": 10.25
 }' -w "\n"
@@ -70,7 +69,7 @@ pode ser acessa na url:
 
 ```
 curl -X 'GET' \
-  'http://localhost:8080/api/v1/vendedores/MM' \
+  'http://localhost:8080/api/v1/vendedores/1' \
   -H 'accept: */*' -w "\n"
 ```
 
@@ -99,6 +98,8 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
   - Usar [Kubernetes](https://kubernetes.io/) para criar uma arquitetura elástica, que escale horizontalmente automaticamente quando a carga aumentar
   
   - Uma esboço dessa solução pode ser visto [aqui](criar diagrama)
+
+colocar banco no diagrama?
 
 
 

@@ -34,12 +34,11 @@ class ProdutoServiceTest {
     void testCriarProdutoOK() {
         
         Produto produto = new Produto();
-        produto.setCodigo("1");
+        produto.setCodigo(1L);
         produto.setNome("produto 1");
         
         Produto produtoCriado = new Produto();
-        produtoCriado.setId(1L);
-        produtoCriado.setCodigo("1");
+        produtoCriado.setCodigo(1L);
         produto.setNome("produto 1");
         
         when(produtoDAO.criarProduto(produto)).thenReturn(produtoCriado);
@@ -47,19 +46,18 @@ class ProdutoServiceTest {
         Produto produtoRetorno = produtoService.criarProduto(produto);
         
         assertNotNull(produtoRetorno);
-        assertTrue((produtoRetorno.getId().equals(1L)));
+        assertTrue((produtoRetorno.getCodigo().equals(1L)));
         assertTrue((produtoRetorno.equals(produtoCriado)));
     }
     
     @Test
     void testCriarProdutoErro() {
         Produto produto = new Produto();
-        produto.setCodigo("1");
+        produto.setCodigo(1L);
         produto.setNome("produto 1");
         
         Produto produtoCriado = new Produto();
-        produtoCriado.setId(1L);
-        produtoCriado.setCodigo("1");
+        produtoCriado.setCodigo(1L);
         produto.setNome("produto 1");
         
         when(produtoDAO.criarProduto(produto)).thenThrow(EntityExistsException.class);
@@ -72,13 +70,11 @@ class ProdutoServiceTest {
     void testCriarRemoverProdutoOK() {
         
         Produto produto = new Produto();
-        produto.setId(1L);
-        produto.setCodigo("1");
+        produto.setCodigo(1L);
         produto.setNome("produto 1");
         
         Produto produtoBuscado = new Produto();
-        produtoBuscado.setId(1L);
-        produtoBuscado.setCodigo("1");
+        produtoBuscado.setCodigo(1L);
         produto.setNome("produto 1");
         
         when(produtoDAO.buscarProduto(produto)).thenReturn(produtoBuscado);
@@ -92,8 +88,7 @@ class ProdutoServiceTest {
     void testCriarRemoverProdutoNaoEncontrado() {
         
         Produto produto = new Produto();
-        produto.setId(1L);
-        produto.setCodigo("1");
+        produto.setCodigo(1L);
         produto.setNome("produto 1");
         
         when(produtoDAO.buscarProduto(produto)).thenReturn(null);

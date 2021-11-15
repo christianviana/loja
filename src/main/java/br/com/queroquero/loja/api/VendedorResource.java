@@ -35,8 +35,8 @@ public class VendedorResource {
 	
     @GET
     @Path("/{matricula}")
-	public Response buscarPorMatricula(@PathParam("matricula") String matricula) {
-		Vendedor vendEncontrado = vendedorService.buscarPorMatricula(matricula);
+    public Response buscarPorMatricula(@PathParam("matricula") Long matricula) {
+        Vendedor vendEncontrado = vendedorService.buscarPorMatricula(matricula);
 		if (vendEncontrado == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		} else {
@@ -50,7 +50,7 @@ public class VendedorResource {
 		if (vendedor != null) {
 			return Response.status(Status.CREATED).entity(vendedor).build();
 		} else {
-			return Response.status(Status.CONFLICT).entity(new Erro(ErroEnum.ERRO_CRIAR_VENDEDOR)).build();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new Erro(ErroEnum.ERRO_CRIAR_VENDEDOR)).build();
 		}
 
     }

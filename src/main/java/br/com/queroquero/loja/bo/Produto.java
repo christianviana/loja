@@ -2,14 +2,11 @@ package br.com.queroquero.loja.bo;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe que representa um produto que pode ser vendido. Dois produtos são considerados iguais quando ambos possuem o
@@ -34,29 +31,16 @@ public class Produto {
     @Id
     @SequenceGenerator(name = "produtoSeq", sequenceName = "produto_id_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "produtoSeq")
-	// o id é usado apenas para o ORM, o mundo externo não o conhece
-	@JsonIgnore
-	private Long id;
-	// código é o campo que identifica o produto externamente
-	@Column(unique = true)
-	private String codigo;
+    private Long codigo;
     private String nome;
     private BigDecimal preco;
 
-
-    public Long getId() {
-        return id;
-    }
     
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
     
-    public void setCodigo(String codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
     

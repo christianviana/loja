@@ -33,7 +33,7 @@ public class ProdutoResource {
 		if (produto != null) {
 			return Response.status(Status.CREATED).entity(produto).build();
 		} else {
-			return Response.status(Status.CONFLICT).entity(new Erro(ErroEnum.ERRO_CRIAR_PRODUTO)).build();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new Erro(ErroEnum.ERRO_CRIAR_PRODUTO)).build();
 		}
 	}
 

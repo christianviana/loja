@@ -21,13 +21,13 @@ class VendaIntegracaoTest {
         Venda venda = new Venda();
         venda.setValorTotal(new BigDecimal("10.11"));
         Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("MM");
+        vendedor.setMatricula(1L);
         venda.setVendedor(vendedor);
         
         List<Item> itens = new ArrayList<>();
         
         Item item = new Item();
-        item.setCodigoProduto("1");
+        item.setCodigoProduto(1L);
         item.setDescricao("produto 1");
         item.setQuantidade(12);
         item.setValorUnitario(new BigDecimal("12.12"));
@@ -43,7 +43,7 @@ class VendaIntegracaoTest {
         Venda venda = new Venda();
         venda.setValorTotal(new BigDecimal("10.11"));
         Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("MM2");
+        vendedor.setMatricula(10L);
         venda.setVendedor(vendedor);
         
         given().contentType("application/json").body(venda).when().post("/api/v1/vendas").then().statusCode(409);
@@ -54,13 +54,13 @@ class VendaIntegracaoTest {
         Venda venda = new Venda();
         venda.setValorTotal(new BigDecimal("10.11"));
         Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("MM");
+        vendedor.setMatricula(1L);
         venda.setVendedor(vendedor);
         
         List<Item> itens = new ArrayList<>();
         
         Item item = new Item();
-        item.setCodigoProduto("10");
+        item.setCodigoProduto(10L);
         item.setDescricao("produto 1");
         item.setQuantidade(12);
         item.setValorUnitario(new BigDecimal("12.12"));

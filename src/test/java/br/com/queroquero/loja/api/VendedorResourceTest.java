@@ -20,14 +20,14 @@ class VendedorResourceTest {
 
 
     @Test
-    void testUsuarioExistente() {
+    void testVendedorExistente() {
         
         Vendedor vendResposta = new Vendedor();
-        vendResposta.setNome("JJ");
-        vendResposta.setMatricula("João José");
+        vendResposta.setNome("João José");
+        vendResposta.setMatricula(1L);
         when(vendedorService.buscarPorMatricula(ArgumentMatchers.any())).thenReturn(vendResposta);
         
-        given().when().get("/api/v1/vendedores/JJ").then().statusCode(200)
+        given().when().get("/api/v1/vendedores/1").then().statusCode(200)
                 .body(StringContains.containsString("João José"));
     }
 

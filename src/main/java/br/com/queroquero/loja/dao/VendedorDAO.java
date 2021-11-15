@@ -26,7 +26,7 @@ public class VendedorDAO {
      * @param matricula Matrícula do vendedor
      * @return O vendedor
      */
-	public Vendedor buscarPorMatricula(String matricula) {
+    public Vendedor buscarPorMatricula(Long matricula) {
 
     	TypedQuery<Vendedor> query = em.createQuery(
                 "SELECT v FROM Vendedor v WHERE v.matricula = :matricula", Vendedor.class);

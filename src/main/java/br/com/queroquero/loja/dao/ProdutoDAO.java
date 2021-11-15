@@ -49,7 +49,7 @@ public class ProdutoDAO {
      * @param codigo código do produto
      * @return O produto
      */
-    public Produto buscarPorCodigo(String codigo) {
+    public Produto buscarPorCodigo(Long codigo) {
         
         TypedQuery<Produto> query = em.createQuery("SELECT p FROM Produto p WHERE p.codigo = :codigo", Produto.class);
         query.setParameter("codigo", codigo);
