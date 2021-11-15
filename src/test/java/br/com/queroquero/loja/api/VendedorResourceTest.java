@@ -2,7 +2,6 @@ package br.com.queroquero.loja.api;
 
 import static io.restassured.RestAssured.given;
 
-import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Test;
 
 import br.com.queroquero.loja.bo.Vendedor;
@@ -11,18 +10,18 @@ import io.quarkus.test.junit.QuarkusTest;
 @QuarkusTest
 class VendedorResourceTest {
     
-    @Test
-    void testBuscarVendedorExistente() {
-        Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula("MJ");
-        vendedor.setNome("Maria Joana");
-        
-        // cria a 1a vez e dá 201
-        given().contentType("application/json").body(vendedor).when().post("/api/v1/vendedores").then().statusCode(201);
-        
-        given().when().get("/api/v1/vendedores/MJ").then().statusCode(200)
-                .body(StringContains.containsString("Maria Joana"));
-    }
+    // @Test
+    // void testBuscarVendedorExistente() {
+    // Vendedor vendedor = new Vendedor();
+    // vendedor.setMatricula("MJ");
+    // vendedor.setNome("Maria Joana");
+    //
+    // // cria a 1a vez e dá 201
+    // given().contentType("application/json").body(vendedor).when().post("/api/v1/vendedores").then().statusCode(201);
+    //
+    // given().when().get("/api/v1/vendedores/MJ").then().statusCode(200)
+    // .body(StringContains.containsString("Maria Joana"));
+    // }
 
 	@Test
     void testBuscarVendedorNaoExistente() {

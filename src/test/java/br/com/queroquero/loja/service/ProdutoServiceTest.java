@@ -1,5 +1,6 @@
 package br.com.queroquero.loja.service;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -48,7 +49,6 @@ class ProdutoServiceTest {
         assertNotNull(produtoRetorno);
         assertTrue((produtoRetorno.getId().equals(1L)));
         assertTrue((produtoRetorno.equals(produtoCriado)));
-        
     }
     
     @Test
@@ -66,6 +66,41 @@ class ProdutoServiceTest {
         
         Produto produtoRetorno = produtoService.criarProduto(produto);
         assertNull(produtoRetorno);
+    }
+    
+    @Test
+    void testCriarRemoverProdutoOK() {
+        
+        Produto produto = new Produto();
+        produto.setId(1L);
+        produto.setCodigo("1");
+        produto.setNome("produto 1");
+        
+        Produto produtoBuscado = new Produto();
+        produtoBuscado.setId(1L);
+        produtoBuscado.setCodigo("1");
+        produto.setNome("produto 1");
+        
+        when(produtoDAO.buscarProduto(produto)).thenReturn(produtoBuscado);
+        
+        boolean retorno = produtoService.removerProduto(produto);
+        assertTrue(retorno);
         
     }
+    
+    @Test
+    void testCriarRemoverProdutoNaoEncontrado() {
+        
+        Produto produto = new Produto();
+        produto.setId(1L);
+        produto.setCodigo("1");
+        produto.setNome("produto 1");
+        
+        when(produtoDAO.buscarProduto(produto)).thenReturn(null);
+        
+        boolean retorno = produtoService.removerProduto(produto);
+        assertFalse(retorno);
+        
+    }
+    
 }
