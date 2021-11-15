@@ -42,7 +42,10 @@ public class VendaService {
      */
 	@Transactional
     public Venda criarVenda(Venda venda) throws VendedorInexistenteException, ProdutoInexistenteException {
-
+        
+        // nececessário para evitar problemas com Hibernate se o numVenda vier informado no JSON da chamada de criação
+        venda.setNumVenda(null);
+        
 		Vendedor vendedor = vendedorService.buscarPorMatricula(venda.getVendedor().getMatricula());
 		if (vendedor == null) {
             throw new VendedorInexistenteException();

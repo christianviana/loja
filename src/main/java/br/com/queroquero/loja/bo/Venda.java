@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * Classe que representa uma venda realizada. A coleção de itens da venda permite itens repetidos.
  */
@@ -26,7 +24,6 @@ public class Venda {
 	@Id
 	@SequenceGenerator(name = "vendaSeq", sequenceName = "venda_id_seq", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "vendaSeq")
-	@JsonIgnore
 	private Long numVenda;	
 	/**
 	 * o valor total é persistindo e não calculado (transiente) porque pode ser
