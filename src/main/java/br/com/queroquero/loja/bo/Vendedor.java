@@ -15,6 +15,16 @@ import javax.persistence.SequenceGenerator;
 @NamedQuery(name = Vendedor.NOME_HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR, query = Vendedor.HQL_VENDEDORES_COM_MAIORES_VENDAS_POR_VALOR)
 public class Vendedor {
 
+    public Vendedor() {
+        
+    }
+    
+    public Vendedor(Long matricula, String nome) {
+        this.matricula = matricula;
+        this.nome = nome;
+        
+    }
+    
     // @formatter:off
     public static final String NOME_HQL_VENDEDORES_MAIS_VENDAS = "buscarVendedoresMaisVendas";
     public static final String HQL_VENDEDORES_MAIS_VENDAS = 

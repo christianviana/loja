@@ -18,6 +18,14 @@ import javax.persistence.SequenceGenerator;
 
 public class Produto {
     
+    public Produto() {
+    }
+    
+    public Produto(String nome, BigDecimal preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+    
     // @formatter:off
     
     public static final String NOME_HQL_PRODUTOS_MAIS_VENDIDOS = "buscarProdutosMaisVendidos";
