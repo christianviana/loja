@@ -105,34 +105,36 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 1. Missão: achar um servidor web light-weighted, já que não podia usar Spring Boot
 
 - Micronaut parecia uma boa opção
-- Achei doc falando que quarkus tem performance melhor: https://simply-how.com/quarkus-vs-micronaut
+- Achei documento falando que Quarkus tem performance melhor: https://simply-how.com/quarkus-vs-micronaut
 - Micronaut com muitas opções complicadas na geração
 - Quarkus mais simples e com opção de geração básica com o que eu preciso 
-- E doc mais fácil e farta, vários tutoriais simples e completos
+- E documentação mais fácil e farta, vários tutoriais simples e completos
 - Já vem preparado pra docker
 - Great features: security, validation, caching
 - Decidido ir com o quarkus
 
-
 2. Montar estrutura do projeto: maven com jersey, junit, etc 
 
-- Montei com quarkus, jax-rs, DI, Junit, Mockito, logs, jackson, swagger
-- Instalei agroal (pool de conexões), Hibernate ORM e postgres jdbc
+- Montei com Quarkus, Jax-rs, DI, Junit, Mockito, Logs, Jackson, Swagger
+- Instalei Agroal (pool de conexões), Hibernate ORM e Postgres JDBC
 - Ia usar H2 para desenvolvimento, mas resolvi usar postgresql em contâiner docker
 
 3. Decidido que será um único microserviço pra escalar horizontalmente, com banco único acessado pelas instâncias dos microservicos 
 
 4. Por precaução quanto à concorrência, resolvi colocar http-session, precisaria mais testes pra avaliar
+
 5. Não coloquei https, não era requisito
+
 6. Testes
-	- Resolvi não escrever testes unitários das classes bo e dao, classes muito simples
-	- Escrevi testes unitários das classes service. Acabaram ficando muito simples também, mas fiz alguns
-	- Escrevi alguns teste de integração com rest assured 
+
+- Resolvi não escrever testes unitários das classes bo e dao, classes muito simples
+- Escrevi testes unitários das classes service. Acabaram ficando muito simples também, mas fiz alguns
+- Escrevi alguns teste de integração com rest assured 
 
 ## Melhorias a serem feitas
 
-- Fazer dto e não usar entidade, para evitar malabarismos
-- Os serviços foram implementados com escopo de sessão, usando o SDFSDFSDF. Estudar um pouco mais os efeitos do ApplicationScoped para verificar se ele seria seguro em um ambiente de alta concorrência. E realizar testes com alta carga.
+- Construir DTO's para fazer mapeamento das entidades dos serviços REST. Usar a própria entidade de negócio mapeada pelo JPA está ocasionando ter que fazer alguns "malabarismos" para evitar conflitos entre um mapeamento e o outro.
+- Os serviços foram implementados com escopo de sessão, usando o  quarkus-undertow. Estudar um pouco mais os efeitos do ApplicationScoped para verificar se ele seria seguro em um ambiente de alta concorrência. E realizar testes com alta carga.
 - Testes unitários: aumentar cobertura
 - Testes de integração: fiz apenas alguns para ver como funciona, fazer mais
 - Testes de integração: dependem dos dados de carga do banco, verificar se não há maneira melhor de fazer
@@ -147,6 +149,6 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 - melhorar arquivo de carga inicial do banco para testes
 
 - testar image docker (resolver questão da rede)
-- revisar este readme
-
+- revisar este readme na web (enviar link no e-mail de entrega)
+- revisão nas classes (comentários e etc)
 
