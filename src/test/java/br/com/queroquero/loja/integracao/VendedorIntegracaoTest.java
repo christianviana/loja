@@ -39,8 +39,7 @@ class VendedorIntegracaoTest {
 	@Test
     void testCriarVendedorNaoExistente() {
         Vendedor vendedor = new Vendedor();
-        vendedor.setMatricula(1L);
-        vendedor.setNome("Cleiton Ramos ");
+        vendedor.setNome("Cleiton Ramos");
         given().contentType("application/json").body(vendedor).when().post("/api/v1/vendedores").then().statusCode(201);
 }
 
