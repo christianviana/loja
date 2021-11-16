@@ -23,7 +23,7 @@ Para instalar uma imagem docker executando um servidor de banco de dados Postgre
 
 2. Dentro do diretório raiz do repositório, executar o comando:
 
- `./mvnw compile quarkus:dev`
+  `./mvnw compile quarkus:dev`
 
 Este comando executa a aplicação no modo desenvolvimento (dev mode).
 
@@ -34,11 +34,11 @@ Para instalar e executar a aplicação, siga os passos abaixo:
 
 1. Criar a imagem:
 
- `./mvnw package`
+  `./mvnw package`
 
 2. Executar a imagem:
 
- `docker run -i --rm -p 8080:8080 loja-quero-quero`
+  `docker run -i --rm -p 8080:8080 loja-quero-quero`
 
 > **Nota**: Para que o contâiner da aplicação consiga acessar a porta do banco de dados no contêiner do banco, é preciso criar uma rede e conectar os dois contâineres. Para realizar essa operação, siga essas [intruções](https://stackoverflow.com/questions/42385977/accessing-a-docker-container-from-another-container).
 
@@ -46,9 +46,7 @@ Para instalar e executar a aplicação, siga os passos abaixo:
 
 
 - A documentação da API foi gerada no padrão Open API com o auxílio da extensão Quarkus smallrye-openapi e
-pode ser acessa na url: 
-
- `http://localhost:8080/q/swagger-ui/`
+pode ser acessa na url: http://localhost:8080/q/swagger-ui/
 
 ## Alguns exemplos de utilização da API:
 
