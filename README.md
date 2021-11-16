@@ -139,9 +139,3 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 - Testes unitários: aumentar cobertura
 - Testes de integração: fiz apenas alguns para ver como funciona, fazer mais
 - Testes de integração: dependem dos dados de carga do banco, verificar se não há maneira melhor de fazer
-
-## Pendências
-
-- fazer diagrama colocar banco no diagrama?
-- revisar este readme na web (enviar link no e-mail de entrega)
-
