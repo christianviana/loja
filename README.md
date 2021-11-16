@@ -42,8 +42,8 @@ Para instalar e executar a aplicação, siga os passos abaixo:
 
 > **Nota**: Para que o contâiner da aplicação consiga acessar a porta do banco de dados no contêiner do banco, é preciso criar uma rede e conectar os dois contâineres. Para realizar essa operação, siga essas [intruções](https://stackoverflow.com/questions/42385977/accessing-a-docker-container-from-another-container).
 
-## Documentação da API
 
+## Documentação da API
 
 - A documentação da API foi gerada no padrão Open API com o auxílio da extensão Quarkus smallrye-openapi e
 pode ser acessa na url: http://localhost:8080/q/swagger-ui/
@@ -78,6 +78,7 @@ curl -X 'GET' \
   'http://localhost:8080/api/v1/vendedores/maiores-por-valor' \
   -H 'accept: */*' -w "\n"
 ```
+
 
 ## Arquitetura para alta carga nos endpoints de estatística
 
@@ -127,7 +128,7 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 
 - Resolvi não escrever testes unitários das classes bo e dao, classes muito simples
 - Escrevi testes unitários das classes service. Acabaram ficando muito simples também, mas fiz alguns
-- Escrevi alguns teste de integração com rest assured 
+- Escrevi alguns testes de integração com rest assured 
 
 ## Melhorias a serem feitas
 
