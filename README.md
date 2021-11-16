@@ -25,7 +25,7 @@ Para instalar uma imagem docker executando um servidor de banco de dados Postgre
 
  `./mvnw compile quarkus:dev`
 
-> Este comando executa a aplicação no modo desenvolvimento (dev mode).
+Este comando executa a aplicação no modo desenvolvimento (dev mode).
 
 ## Instalação (opção 2): via imagem Docker
 
