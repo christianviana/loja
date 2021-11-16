@@ -96,7 +96,7 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
   - A aplicação de estatística pode utilizar beans do tipo ApplicationScoped, pois são apenas de pesquisa e não terão problemas de concorrência. Com esses escopo, espera-se menor footprint de memória de beans, e menor tempo de criação de request, pois não precisa criar e injetar o bean a cada usuário diferente  
   - Usar [Kubernetes](https://kubernetes.io/) para criar uma arquitetura elástica, que escale horizontalmente automaticamente quando a carga aumentar
   
-  - Uma esboço dessa solução pode ser visto [aqui](criar diagrama)
+  - Uma esboço dessa solução pode ser visto [aqui](diagrama.jpg)
 
 
 ## Histórico de escolhas arquiteturais do projeto
@@ -143,8 +143,5 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 ## Pendências
 
 - fazer diagrama colocar banco no diagrama?
-- testar image docker (resolver questão da rede)
 - revisar este readme na web (enviar link no e-mail de entrega)
-- revisão nas classes (comentários e etc)
-- testar e ler sobre o bean httpsession pra ver se entrego assim mesmo
 
