@@ -88,7 +88,7 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 
 2 - Criar uma aplicação para a parte CRUD e outra separada para a parte de estatística, seguindo a seguinte arquitetura:
 
- - Empacotar as camas de negócio e DAO em um jar, para que o modelo e regras de negócio possam ser reutilizados
+ - Empacotar as camadas de negócio e DAO em um jar, para que o modelo e regras de negócio possam ser reutilizados
   tanto na aplicação de CRUD quanto na de estatísticas
   - Criar duas aplicações separadas, uma para CRUD e outra para estatísticas, as duas tem como dependência o JAR do negócio
   - A aplicação CRUD depende do JAR de negócio e acrescenta os services e os endpoints do CRUD
@@ -104,9 +104,9 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 1. Missão: achar um servidor web light-weighted, já que não podia usar Spring Boot
 
 - Micronaut parecia uma boa opção
-- Achei documento falando que Quarkus tem performance melhor: https://simply-how.com/quarkus-vs-micronaut
+- Achei documento explicando que Quarkus tem performance melhor: https://simply-how.com/quarkus-vs-micronaut
 - Micronaut com muitas opções complicadas na geração
-- Quarkus mais simples e com opção de geração básica com o que eu preciso 
+- Quarkus mais simples e com opção de geração básica com as opções que eu preciso 
 - E documentação mais fácil e farta, vários tutoriais simples e completos
 - Já vem preparado pra docker
 - Great features: security, validation, caching
@@ -138,4 +138,4 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 - Colocar a parte de estatísticas em um path diferentes, para manter consistência de nomes da API, já que elas retornam DTO diferentes do DTO do recurso. Ex:  /vendedores/maiores-por-valor não retorna apenas Vendedores, e sim Vendedores com quantidades.
 - Testes unitários: aumentar cobertura
 - Testes de integração: fiz apenas alguns para ver como funciona, fazer mais
-- Testes de integração: dependem dos dados de carga do banco, verificar se não há maneira melhor de fazer
+
