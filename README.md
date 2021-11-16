@@ -88,12 +88,12 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 
 2 - Criar uma aplicação para a parte CRUD e outra separada para a parte de estatística, seguindo a seguinte arquitetura:
 
- - Empacotar as camas de negócio, serviço e DAO em um jar, para que o modelo e regras de negócio possam ser reutilizados
+ - Empacotar as camas de negócio e DAO em um jar, para que o modelo e regras de negócio possam ser reutilizados
   tanto na aplicação de CRUD quanto na de estatísticas
   - Criar duas aplicações separadas, uma para CRUD e outra para estatísticas, as duas tem como dependência o JAR do negócio
-  - A aplicação CRUD depende do JAR de negócio e acrescrenta os endpoints do CRUD
-  - A aplicação de estatística também depende do JAR de negócio, mas com apenas os endpoints de estatística
-  - A aplicação de estatística pode fazer de bens do tipo ApplicationScoped, pois são apenas de pesquisa e não terão problemas de concorrência. Com esses escopo, espera-se menor footprint de memória de beans, e menor tempo de criação de request, pois não precisa criar e injetar o bean a cada usuário diferente  
+  - A aplicação CRUD depende do JAR de negócio e acrescenta os services e os endpoints do CRUD
+  - A aplicação de estatística também depende do JAR de negócio, e acrescenta os services e endpoints, mas com apenas para os endpoints de estatística
+  - A aplicação de estatística pode utilizar beans do tipo ApplicationScoped, pois são apenas de pesquisa e não terão problemas de concorrência. Com esses escopo, espera-se menor footprint de memória de beans, e menor tempo de criação de request, pois não precisa criar e injetar o bean a cada usuário diferente  
   - Usar [Kubernetes](https://kubernetes.io/) para criar uma arquitetura elástica, que escale horizontalmente automaticamente quando a carga aumentar
   
   - Uma esboço dessa solução pode ser visto [aqui](criar diagrama)
@@ -127,27 +127,24 @@ Algumas mudanças que podem ser feitas para que os endpoints de estatística sup
 6. Testes
 
 - Resolvi não escrever testes unitários das classes bo e dao, classes muito simples
-- Escrevi testes unitários das classes service. Acabaram ficando muito simples também, mas fiz alguns
+- Escrevi testes unitários das classes service. Acabaram ficando muito simples e repetitivos, então só fiz alguns
+- Escrevi alguns testes unitários das classes API, para testar apenas o endpoint, sem chamada às camadas inferiores
 - Escrevi alguns testes de integração com rest assured 
 
 ## Melhorias a serem feitas
 
 - Construir DTO's para fazer mapeamento das entidades dos serviços REST. Usar a própria entidade de negócio mapeada pelo JPA está ocasionando ter que fazer alguns "malabarismos" para evitar conflitos entre um mapeamento e o outro.
 - Os serviços foram implementados com escopo de sessão, usando o  quarkus-undertow. Estudar um pouco mais os efeitos do ApplicationScoped para verificar se ele seria seguro em um ambiente de alta concorrência. E realizar testes com alta carga.
+- Colocar a parte de estatísticas em um path diferentes, para manter consistência de nomes da API, já que elas retornam DTO diferentes do DTO do recurso. Ex:  /vendedores/maiores-por-valor não retorna apenas Vendedores, e sim Vendedores com quantidades.
 - Testes unitários: aumentar cobertura
 - Testes de integração: fiz apenas alguns para ver como funciona, fazer mais
 - Testes de integração: dependem dos dados de carga do banco, verificar se não há maneira melhor de fazer
 
 ## Pendências
 
-- alguns testes unitários (service)
-
-- alguns testes de integração
-
 - fazer diagrama colocar banco no diagrama?
-- melhorar arquivo de carga inicial do banco para testes
-
 - testar image docker (resolver questão da rede)
 - revisar este readme na web (enviar link no e-mail de entrega)
 - revisão nas classes (comentários e etc)
+- testar e ler sobre o bean httpsession pra ver se entrego assim mesmo
 
