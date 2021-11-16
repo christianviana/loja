@@ -34,11 +34,11 @@ Para instalar e executar a aplicação, siga os passos abaixo:
 
 1. Criar a imagem:
 
-> `./mvnw package`
+`./mvnw package`
 
 2. Executar a imagem:
 
-> `docker run -i --rm -p 8080:8080 loja-quero-quero`
+`docker run -i --rm -p 8080:8080 loja-quero-quero`
 
 > **Nota**: Para que o contâiner da aplicação consiga acessar a porta do banco de dados no contêiner do banco, é preciso criar uma rede e conectar os dois contâineres. Para realizar essa operação, siga essas [intruções](https://stackoverflow.com/questions/42385977/accessing-a-docker-container-from-another-container).
 
